@@ -10,7 +10,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-    /** test */
     public function test_model_configuration(): void
     {
         $m = new User();

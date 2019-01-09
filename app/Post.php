@@ -11,8 +11,10 @@ class Post extends Model
 
     protected $table = 'posts';
 
+    protected $fillable = ['title', 'slug', 'content'];
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
