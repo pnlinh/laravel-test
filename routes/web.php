@@ -15,3 +15,4 @@ Route::get('/', 'HomeController@index');
 Route::get('/about', 'HomeController@about');
 
 Route::resource('/beverage', 'BeverageController');
+Route::post('/beverage/buy', 'PurchaseController@buy');

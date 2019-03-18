@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Beverage;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -41,6 +42,20 @@ class BeverageTest extends TestCase
     /** @test */
     public function a_logged_in_user_can_buy_beverage(): void
     {
-        
+        $this->authenticate();
+
+        $data = [
+            'beverage_id' => $this->beverage->id,
+            'price' => 200,
+        ];
+
+        // Post data for buying
+        $response = $this->post('/beverage/buy', $data);
+
+        // Assert in database
+        $this->assertDatabaseHas('purchases', $data);
+
+        // Status
+        $response->assertStatus(201);
     }
 }
