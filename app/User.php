@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'first_name',
         'last_name',
+        'age',
     ];
 
     /**
@@ -50,5 +51,16 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    /**
+     *
+     * @author pnlinh <pnlinh1207@gmail.com>
+     *
+     * @return bool
+     */
+    public function isMinor()
+    {
+        return $this->age < 18;
     }
 }

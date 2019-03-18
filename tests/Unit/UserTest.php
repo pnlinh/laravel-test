@@ -4,12 +4,13 @@ namespace Tests\Unit;
 
 use App\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     public function test_model_configuration(): void
     {
@@ -43,5 +44,13 @@ class UserTest extends TestCase
         ]);
 
         $this->assertEquals('Ngoc Linh Pham', $user->full_name);
+    }
+
+    /** @test */
+    public function user_has_age_attribute()
+    {
+        $user = factory(User::class)->make();
+
+        $this->assertNotNull($user->age);
     }
 }
