@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -19,7 +18,7 @@ class UserTest extends TestCase
         $this->assertEquals('id', $m->getKeyName());
         $this->assertEquals('users', $m->getTable());
         $this->assertEquals(['password', 'remember_token'], $m->getHidden());
-        $this->assertEquals(['name', 'email', 'password', 'first_name', 'last_name'], $m->getFillable());
+        $this->assertEquals(['name', 'email', 'password', 'first_name', 'last_name', 'age'], $m->getFillable());
     }
 
     public function test_posts_relation(): void
@@ -38,6 +37,7 @@ class UserTest extends TestCase
         $user = User::create([
             'name' => 'pnlinh',
             'email' => 'pnlinh1207@gmail.com',
+            'age' => 24,
             'password' => '123456',
             'first_name' => 'Ngoc Linh',
             'last_name' => 'Pham',
@@ -47,7 +47,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function user_has_age_attribute()
+    public function user_has_age_attribute(): void
     {
         $user = factory(User::class)->make();
 
